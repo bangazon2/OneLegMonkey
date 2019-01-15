@@ -5,44 +5,89 @@ import { Link } from 'react-router-dom';
 export class Registration extends Component {
 
   state = {
-    credential: {
+    user: {
+      firstname:'Jeffrey',
+      lastname: 'Chen',
       email: 'jeffreychen2016@gmail.com',
       password: '123456',
     },
   };
 
   registerClickEvent = e => {
-    const { credential } = this.state;
+    const { user } = this.state;
     e.preventDefault();
     authRequests
-      .registerUser(credential)
-      .then(() => {
+      .registerUser(user)
+      .then((fbUser) => {
         this.props.history.push('/counter');
+        console.error('user:',fbUser);
       })
       .catch(error => {
         console.error('there was an error when registering', error);
       });
   };
 
+  firstNameChange = e => {
+    const tempuser = { ...this.state.user };
+    tempuser.firstname = e.target.value;
+    this.setState({ user: tempuser });
+  }
+
+  lastNameChange = e => {
+    const tempuser = { ...this.state.user };
+    tempuser.lastname = e.target.value;
+    this.setState({ user: tempuser });
+  }
+
   emailChange = e => {
-    const tempCredential = { ...this.state.credential };
-    tempCredential.email = e.target.value;
-    this.setState({ credential: tempCredential });
+    const tempuser = { ...this.state.user };
+    tempuser.email = e.target.value;
+    this.setState({ user: tempuser });
   };
 
   passwordChange = e => {
-    const tempCredential = { ...this.state.credential };
-    tempCredential.password = e.target.value;
-    this.setState({ credential: tempCredential });
+    const tempuser = { ...this.state.user };
+    tempuser.password = e.target.value;
+    this.setState({ user: tempuser });
   };
 
   render() {
-    const { credential } = this.state;
+    const { user } = this.state;
     return (
       <div className="Register">
         <div id="login-form">
           <h1 className="text-center">Register</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3">
+          <div className="form-group">
+              <label htmlFor="inputEmail" className="col-sm-4 control-label">
+                First Name:
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputFirstName"
+                  placeholder="First Name"
+                  value={user.firstname}
+                  onChange={this.firstNameChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputEmail" className="col-sm-4 control-label">
+                Last Name:
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputLastName"
+                  placeholder="Last Name"
+                  value={user.lastname}
+                  onChange={this.lastNameChange}
+                />
+              </div>
+            </div>
             <div className="form-group">
               <label htmlFor="inputEmail" className="col-sm-4 control-label">
                 Email:
@@ -53,7 +98,7 @@ export class Registration extends Component {
                   className="form-control"
                   id="inputEmail"
                   placeholder="Email"
-                  value={credential.email}
+                  value={user.email}
                   onChange={this.emailChange}
                 />
               </div>
@@ -68,7 +113,7 @@ export class Registration extends Component {
                   className="form-control"
                   id="inputPassword"
                   placeholder="Password"
-                  value={credential.password}
+                  value={user.password}
                   onChange={this.passwordChange}
                 />
               </div>

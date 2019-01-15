@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bangazon2.Models;
+using System.Data.SqlClient;
 
 namespace bangazon2.DataAccess
 {
@@ -18,9 +19,15 @@ namespace bangazon2.DataAccess
         }
 
         // Get Products
-        public IEnumerable<ProductsForGet> GetAllProducts()
+        public IEnumerable<Products> GetAllProducts()
         {
             using (var db = new SqlConnection(ConnectionString))
+            {
+                db.Open();
+
+                var results = db.Query<Products>("select * from Products");
+                return results.ToList();
+            }
         }
     }
 }

@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "file:node_modules/axios",
     "bootstrap": "^3.3.7",
     "firebase": "^5.7.3",
+    "npm": "^6.5.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",

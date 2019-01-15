@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import productsRequest from '../DBRequests';
+import productsRequest from '../DBRequests/productRequest';
 
 export class Home extends Component {
 

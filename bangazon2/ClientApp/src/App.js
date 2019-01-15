@@ -5,6 +5,9 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Registration } from './components/Registration/Registration';
+import fbConnection from '../src/firebaseRequests/connection';
+
+fbConnection();
 
 export default class App extends Component {
   displayName = App.name

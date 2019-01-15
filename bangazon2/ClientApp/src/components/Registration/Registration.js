@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 export class Registration extends Component {
 
   state = {
-    user: {
+    credential: {
       email: 'jeffreychen2016@gmail.com',
       password: '123456',
     },
   };
 
   registerClickEvent = e => {
-    const { user } = this.state;
+    const { credential } = this.state;
     e.preventDefault();
     authRequests
-      .registerUser(user)
+      .registerUser(credential)
       .then(() => {
         this.props.history.push('/counter');
       })
@@ -25,19 +25,19 @@ export class Registration extends Component {
   };
 
   emailChange = e => {
-    const tempUser = { ...this.state.user };
-    tempUser.email = e.target.value;
-    this.setState({ user: tempUser });
+    const tempCredential = { ...this.state.credential };
+    tempCredential.email = e.target.value;
+    this.setState({ credential: tempCredential });
   };
 
   passwordChange = e => {
-    const tempUser = { ...this.state.user };
-    tempUser.password = e.target.value;
-    this.setState({ user: tempUser });
+    const tempCredential = { ...this.state.credential };
+    tempCredential.password = e.target.value;
+    this.setState({ credential: tempCredential });
   };
 
   render() {
-    const { user } = this.state;
+    const { credential } = this.state;
     return (
       <div className="Register">
         <div id="login-form">
@@ -53,7 +53,7 @@ export class Registration extends Component {
                   className="form-control"
                   id="inputEmail"
                   placeholder="Email"
-                  value={user.email}
+                  value={credential.email}
                   onChange={this.emailChange}
                 />
               </div>
@@ -68,7 +68,7 @@ export class Registration extends Component {
                   className="form-control"
                   id="inputPassword"
                   placeholder="Password"
-                  value={user.password}
+                  value={credential.password}
                   onChange={this.passwordChange}
                 />
               </div>

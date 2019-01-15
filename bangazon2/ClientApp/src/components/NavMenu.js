@@ -18,19 +18,20 @@ export class NavMenu extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
+            <NavItem><Glyphicon glyph='search' /><input type="text" placeholder="Search for products here"/></NavItem>
             <LinkContainer to={'/'} exact>
               <NavItem>
                 <Glyphicon glyph='home' /> Products
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
+            <LinkContainer to={'/productCategories'}>
               <NavItem>
-                <Glyphicon glyph='education' /> Product Categories
+                <Glyphicon glyph='th-list' /> Product Categories
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
+            <LinkContainer to={'/cart'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Cart
+                <Glyphicon glyph='shopping-cart' /> Cart
               </NavItem>
             </LinkContainer>
           </Nav>

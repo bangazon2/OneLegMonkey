@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace bangazon2
 {
@@ -22,6 +24,22 @@ namespace bangazon2
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.IncludeErrorDetails = true;
+                    options.Authority = "https://securetoken.google.com/react-realtor-66392";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = "https://securetoken.google.com/react-realtor-66392",
+                        ValidateAudience = true,
+                        ValidAudience = "react-realtor-66392",
+                        ValidateLifetime = true
+                    };
+                }
+            );
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -44,6 +62,7 @@ namespace bangazon2
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

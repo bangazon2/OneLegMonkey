@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 export class productDetail extends Component {
 
@@ -26,6 +25,7 @@ export class productDetail extends Component {
             <div>
                 <h1>Product Detail</h1>
                 {singleProduct}
+                <button className="btn btn-danger">Hi</button>
             </div>
         );
     }

@@ -20,7 +20,13 @@ export class Registration extends Component {
       .registerUser(user)
       .then((fbUser) => {
         this.props.history.push('/counter');
-        console.error('user:',fbUser);
+        const userToPost = {
+          FirstName: user.firstname,
+          LastName: user.lastname,
+          IsActive: 1,
+          FirebaseId: fbUser.user.uid
+        }
+        authRequests.addCustomer(userToPost);
       })
       .catch(error => {
         console.error('there was an error when registering', error);

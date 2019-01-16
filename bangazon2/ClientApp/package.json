@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "axios": "file:node_modules/axios",
-=======
     "axios": "^0.18.0",
->>>>>>> afd1e494854fa99c8dc8b88fce94c9eb682a8c09
     "bootstrap": "^3.3.7",
     "firebase": "^5.7.3",
     "npm": "^6.5.0",

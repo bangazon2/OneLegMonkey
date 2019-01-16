@@ -3,7 +3,7 @@
 const getRequest = () => {
     return new Promise((resolve, reject) => {
         axios
-            .get(`/api/product/products`)
+            .get(`/api/product`)
             .then(results => {
                 resolve(results.data);
             })

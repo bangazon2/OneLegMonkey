@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import authRequests from '../../firebaseRequests/auth';
 
 export class Authentication extends Component {
   state = {
@@ -9,9 +10,33 @@ export class Authentication extends Component {
     },
   };
 
-  render () {
+  loginClickEvent = (e) => {
+    const { user } = this.state;
+    e.preventDefault();
+    authRequests
+      .loginUser(user)
+      .then(() => {
+        this.props.history.push('/counter');
+        console.error('I am in!');
+      })
+      .catch(error => {
+        console.error('there was an error in registering', error);
+      });
+  };
 
-  
+  emailChange = e => {
+    const tempUser = { ...this.state.user };
+    tempUser.email = e.target.value;
+    this.setState({ user: tempUser });
+  };
+
+  passwordChange = e => {
+    const tempUser = { ...this.state.user };
+    tempUser.password = e.target.value;
+    this.setState({ user: tempUser });
+  };
+
+  render () {
     const { user } = this.state;
     return (
       <div className="Login">

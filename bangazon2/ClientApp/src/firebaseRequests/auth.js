@@ -18,4 +18,11 @@ const addCustomer = (customer) => {
   })
 }
 
-export default { registerUser,addCustomer }
+const loginUser = (user) => {
+  return firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(cred => {
+    cred.user.getIdToken()
+      .then(token => sessionStorage.setItem('token',token));
+  });
+};
+
+export default { registerUser,addCustomer,loginUser }

@@ -12,7 +12,6 @@ fbConnection();
 
 export default class App extends Component {
   displayName = App.name
-
   render() {
     return (
       <Layout>

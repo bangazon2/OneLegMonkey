@@ -15,9 +15,9 @@ export class Authentication extends Component {
     e.preventDefault();
     authRequests
       .loginUser(user)
-      .then(() => {
+      .then((res) => {
         this.props.history.push('/counter');
-        console.error('I am in!');
+        console.error('I am in:', res);
       })
       .catch(error => {
         console.error('there was an error in registering', error);

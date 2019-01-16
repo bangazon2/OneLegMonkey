@@ -126,7 +126,7 @@ export class Registration extends Component {
             </div>
             <div className="form-group">
               <div className="col-sm-12 text-center">
-                <Link to="/login">Need to Login?</Link>
+                <Link to="/authentication">Need to Login?</Link>
               </div>
             </div>
             <div className="form-group">

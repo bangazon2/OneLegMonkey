@@ -14,13 +14,12 @@ fbConnection();
 
 export default class App extends Component {
   displayName = App.name
-
   render() {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetchdata' component={FetchData} />
+        <Route path='/productCategories' component={Counter} />
+        <Route path='/cart' component={FetchData} />
         <Route path='/productDetail' component={productDetail} />
         <Route path='/registration' component={Registration} />
         <Route path='/authentication' component={Authentication} />

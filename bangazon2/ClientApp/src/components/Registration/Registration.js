@@ -19,7 +19,7 @@ export class Registration extends Component {
     authRequests
       .registerUser(user)
       .then((fbUser) => {
-        this.props.history.push('/counter');
+        this.props.history.push('/cart');
         const userToPost = {
           FirstName: user.firstname,
           LastName: user.lastname,

@@ -24,7 +24,14 @@ namespace bangazon2.DataAccess
             {
                 connection.Open();
 
-                var result = connection.Query<ProductType>(@"SELECT * FROM ProductType");
+                var result = connection.Query<ProductType>(@"SELECT ProductTypeId, 
+	                                                               Name,
+	                                                               Quantity, 
+	                                                               PT.ProductTypeName
+                                                            FROM Product P
+                                                            JOIN ProductType PT
+                                                            ON P.ProductTypeId = PT.Id
+                                                            ORDER BY ProductTypeName");
 
                 return result.ToList();
             }

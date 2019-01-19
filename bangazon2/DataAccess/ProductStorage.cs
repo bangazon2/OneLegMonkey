@@ -18,7 +18,7 @@ namespace bangazon2.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
 
-        // Get Products
+        // Get All Products
         public IEnumerable<Products> GetAllProducts()
         {
             using (var db = new SqlConnection(ConnectionString))

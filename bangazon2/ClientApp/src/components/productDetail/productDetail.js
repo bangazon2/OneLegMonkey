@@ -25,7 +25,7 @@ export class productDetail extends Component {
             <div>
                 <h1>Product Detail</h1>
                 {singleProduct}
-                <button className="btn btn-danger">Hi</button>
+                <button className="btn btn-danger">Add To Cart</button>
             </div>
         );
     }

@@ -9,10 +9,24 @@ const getRequest = () => {
             })
             .catch(error => {
                 reject(error);
+            });
+    });
+};
+
+const getProductById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(`/api/product/${id}`)
+            .then(res => {
+                resolve(res.data);
             })
-    })
-}
+            .catch(err => {
+                reject(err);
+            });
+    });
+};
 
 export default {
     getRequest,
+    getProductById
 }

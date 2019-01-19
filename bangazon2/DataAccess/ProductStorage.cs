@@ -29,5 +29,18 @@ namespace bangazon2.DataAccess
                 return results.ToList();
             }
         }
+
+        public Products GetById(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var result = connection.QueryFirst<Products>(@"SELECT *
+                                                                FROM Product
+                                                                WHERE Product.Id = @id", new { id = id });
+                return result;
+            }
+        }
     }
 }

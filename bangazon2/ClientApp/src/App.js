@@ -20,7 +20,7 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/productCategories' component={Counter} />
         <Route path='/cart' component={FetchData} />
-        <Route path='/productDetail' component={productDetail} />
+        <Route path='/productDetail/:id' component={productDetail} />
         <Route path='/registration' component={Registration} />
         <Route path='/authentication' component={Authentication} />
       </Layout>

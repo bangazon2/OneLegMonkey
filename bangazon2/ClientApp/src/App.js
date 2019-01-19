@@ -39,7 +39,7 @@ const PublicRoute = ({ component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/cart', state: {from: props.location}}}
+            to={{ pathname: '/', state: {from: props.location}}}
           />
         )
       }
@@ -81,12 +81,13 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <PrivateRoute path='/productCategories' authed={this.state.authed} component={Counter} />
             <PrivateRoute path='/cart' authed={this.state.authed} component={FetchData} />
-            <PrivateRoute path='/productDetail' authed={this.state.authed} component={productDetail} />
+            <PrivateRoute path='/productDetail/:id' authed={this.state.authed} component={productDetail} />
             <PublicRoute path='/registration' authed={this.state.authed} component={Registration} />
             <PublicRoute path='/authentication' authed={this.state.authed} component={Authentication} />
           </Switch>
         </Layout>
       </BrowserRouter>
+
     );
   }
 }

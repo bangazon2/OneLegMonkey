@@ -20,17 +20,24 @@ namespace bangazon2.Controllers
             _productStorage = new ProductStorage(config);
         }
 
-        // GET
+        // GET api/product
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_productStorage.GetAllProducts());
         }
+        // GET api/product/latest
+        [HttpGet("latest")]
+        public IActionResult GetLatest()
+        {
+            return Ok(_productStorage.GetLatestProducts());
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
-            return Ok(_productStorage.GetById(id));
+            var result = _productStorage.GetById(id);
+            return Ok(result);
         }
     }
 }

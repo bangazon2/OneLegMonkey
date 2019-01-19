@@ -18,7 +18,7 @@ namespace bangazon2.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
 
-        // Get Products
+        // Get All Products
         public IEnumerable<Products> GetAllProducts()
         {
             using (var db = new SqlConnection(ConnectionString))
@@ -30,7 +30,20 @@ namespace bangazon2.DataAccess
             }
         }
 
-        // Get Single Product
+
+        // Get Last 20 Products
+        public IEnumerable<Products> GetLatestProducts()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                db.Open();
+
+                var results = db.Query<Products>("SELECT TOP 20 * FROM Product ORDER BY id DESC");
+                return results.ToList();
+            }
+        }
+
+
         public Products GetById(int id)
         {
             using (var connection = new SqlConnection(ConnectionString))
@@ -39,7 +52,7 @@ namespace bangazon2.DataAccess
 
                 var result = connection.QueryFirst<Products>(@"SELECT *
                                                                 FROM Product
-                                                                WhERE Product.Id = @id", new { id = id });
+                                                                WHERE Product.Id = @id", new { id = id });
                 return result;
             }
         }

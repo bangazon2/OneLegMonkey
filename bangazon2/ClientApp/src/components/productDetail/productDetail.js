@@ -9,7 +9,7 @@ export class productDetail extends Component {
         }
 
     componentDidMount() {
-        const productId = 5;
+        const productId = this.props.match.params.id;
         productRequest.getProductById(productId)
             .then((res) => {
                 this.setState({ products: [res] });

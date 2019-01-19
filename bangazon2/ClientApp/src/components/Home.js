@@ -17,9 +17,13 @@ export class Home extends Component {
     }
 
     render() {
+        const singleProduct = (id) => {
+            this.props.history.push(`/productDetail/${id}`);
+        };
+
         const latestProducts = this.state.products.map((product) => {
             return (
-                <li key={product.id}>
+                <li key={product.id} onClick={() => singleProduct(product.id)}>
                     <p>{product.name} &nbsp; ${product.price}.00</p>
                 </li>
             );

@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+// import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 export class productDetail extends Component {
 

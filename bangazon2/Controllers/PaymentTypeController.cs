@@ -25,7 +25,7 @@ namespace bangazon2.Controllers
         public IActionResult GetAllPaymentTypes()
         {
             var result = _storage.GetAll();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

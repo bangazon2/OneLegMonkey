@@ -30,6 +30,18 @@ namespace bangazon2.DataAccess
             }
         }
 
+        // Get Last 20 Products
+        public IEnumerable<Products> GetLatestProducts()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                db.Open();
+
+                var results = db.Query<Products>("SELECT TOP 20 * FROM Product ORDER BY id DESC");
+                return results.ToList();
+            }
+        }
+
         public Products GetById(int id)
         {
             using (var connection = new SqlConnection(ConnectionString))

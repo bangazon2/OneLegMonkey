@@ -10,7 +10,10 @@ export class Layout extends Component {
       <Grid fluid>
         <Row>
           <Col sm={3}>
-            <NavMenu />
+            <NavMenu 
+              logout = {this.props.runAway}
+              authed = {this.props.authed}
+            />
           </Col>
           <Col sm={9}>
             {this.props.children}

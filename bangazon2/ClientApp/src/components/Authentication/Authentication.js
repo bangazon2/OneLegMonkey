@@ -16,11 +16,10 @@ export class Authentication extends Component {
     authRequests
       .loginUser(user)
       .then((res) => {
-        this.props.history.push('/counter');
-        console.error('I am in:', res);
+        this.props.history.push('/cart');
       })
       .catch(error => {
-        console.error('there was an error in registering', error);
+        console.error('there was an error in login', error);
       });
   };
 

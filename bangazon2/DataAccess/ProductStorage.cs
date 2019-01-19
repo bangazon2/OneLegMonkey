@@ -25,7 +25,7 @@ namespace bangazon2.DataAccess
             {
                 db.Open();
 
-                var results = db.Query<Products>("select * from Products");
+                var results = db.Query<Products>("select * from Product");
                 return results.ToList();
             }
         }

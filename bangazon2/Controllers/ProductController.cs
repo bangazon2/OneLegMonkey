@@ -20,7 +20,7 @@ namespace bangazon2.Controllers
             _productStorage = new ProductStorage(config);
         }
 
-        // GET
+        // GET api/product
         [HttpGet]
         public IActionResult Get()
         {

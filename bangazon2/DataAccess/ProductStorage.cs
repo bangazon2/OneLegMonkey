@@ -18,14 +18,14 @@ namespace bangazon2.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
 
-        // Get Products
+        // Get All Products
         public IEnumerable<Products> GetAllProducts()
         {
             using (var db = new SqlConnection(ConnectionString))
             {
                 db.Open();
 
-                var results = db.Query<Products>("select * from Products");
+                var results = db.Query<Products>("select * from Product");
                 return results.ToList();
             }
         }

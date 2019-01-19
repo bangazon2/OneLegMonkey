@@ -30,6 +30,7 @@ namespace bangazon2.DataAccess
             }
         }
 
+
         // Get Last 20 Products
         public IEnumerable<Products> GetLatestProducts()
         {
@@ -41,6 +42,7 @@ namespace bangazon2.DataAccess
                 return results.ToList();
             }
         }
+
 
         public Products GetById(int id)
         {

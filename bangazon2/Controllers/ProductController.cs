@@ -26,7 +26,6 @@ namespace bangazon2.Controllers
         {
             return Ok(_productStorage.GetAllProducts());
         }
-
         // GET api/product/latest
         [HttpGet("latest")]
         public IActionResult GetLatest()

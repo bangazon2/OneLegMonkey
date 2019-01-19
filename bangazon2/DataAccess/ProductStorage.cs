@@ -25,8 +25,22 @@ namespace bangazon2.DataAccess
             {
                 db.Open();
 
-                var results = db.Query<Products>("select * from Products");
+                var results = db.Query<Products>("select * from Product");
                 return results.ToList();
+            }
+        }
+
+        // Get Single Product
+        public Products GetById(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var result = connection.QueryFirst<Products>(@"SELECT *
+                                                                FROM Product
+                                                                WhERE Product.Id = @id", new { id = id });
+                return result;
             }
         }
     }

@@ -26,5 +26,11 @@ namespace bangazon2.Controllers
         {
             return Ok(_productStorage.GetAllProducts());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetProductById(int id)
+        {
+            return Ok(_productStorage.GetById(id));
+        }
     }
 }

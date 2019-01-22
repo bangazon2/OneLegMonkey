@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
+import { Cart } from './components/Cart';
 import { Counter } from './components/Counter';
 import { productDetail } from './components/productDetail/productDetail';
 import { Registration } from './components/Registration/Registration';
@@ -13,22 +13,7 @@ import fbConnection from '../src/firebaseRequests/connection';
 
 fbConnection();
 
-const PrivateRoute = ({ component: Component, authed, ...rest}) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        authed === true ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/authentication', state: {from: props.location}}}
-          />
-        )
-      }
-    />
-  );
-};
+
 
 const PublicRoute = ({ component: Component, authed, ...rest}) => {
   return (
@@ -49,9 +34,15 @@ const PublicRoute = ({ component: Component, authed, ...rest}) => {
 
 export default class App extends Component {
 
+    constructor(props) {
+        super(props)
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+    }
+
   state =
   {
     authed: false,
+    cart: [],
   }
 
   componentDidMount () {
@@ -72,22 +63,42 @@ export default class App extends Component {
     this.setState({authed: false});
   }
 
+    handleAddToCart(item) {
+        const cartItem = this.state.cart.find(x => x.id === item.id);
+        !cartItem && this.setState({ cart: [...this.state.cart, item] })
+    }
+
   displayName = App.name
-  render() {
+    render() {
+        const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+            return (
+                <Route
+                    {...rest}
+                    render={props =>
+                        authed === true ? (
+                            <Component {...props} handleAddToCart={this.handleAddToCart} cart={this.state.cart} />
+                        ) : (
+                                <Redirect
+                                    to={{ pathname: '/authentication', state: { from: props.location } }}
+                                />
+                            )
+                    }
+                />
+            );
+        };
     return (
       <BrowserRouter>
         <Layout authed={this.state.authed} runAway={this.runAway}>
-          <Switch>
+        <Switch>
             <Route exact path='/' component={Home} />
             <PrivateRoute path='/productCategories' authed={this.state.authed} component={Counter} />
-            <PrivateRoute path='/cart' authed={this.state.authed} component={FetchData} />
-            <PrivateRoute path='/productDetail/:id' authed={this.state.authed} component={productDetail} />
+            <PrivateRoute path='/cart' authed={this.state.authed} component={Cart} />
+            <PrivateRoute path='/productDetail/:id' authed={this.state.authed} component={productDetail}/>
             <PublicRoute path='/registration' authed={this.state.authed} component={Registration} />
             <PublicRoute path='/authentication' authed={this.state.authed} component={Authentication} />
           </Switch>
         </Layout>
       </BrowserRouter>
-
     );
   }
 }

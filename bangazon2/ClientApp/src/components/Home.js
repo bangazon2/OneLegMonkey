@@ -23,8 +23,13 @@ export class Home extends Component {
 
         const latestProducts = this.state.products.map((product) => {
             return (
-                <li key={product.id} onClick={() => singleProduct(product.id)}>
+                <li key={product.id}>
                     <p>{product.name} &nbsp; ${product.price}.00</p>
+                    <button
+                        onClick={() => singleProduct(product.id)}
+                    >
+                        View
+                    </button>
                 </li>
             );
         })

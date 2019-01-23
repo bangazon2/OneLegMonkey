@@ -13,7 +13,6 @@ export class productDetail extends Component {
         productRequest.getProductById(productId)
             .then((res) => {
                 this.setState({ products: [res] });
-                console.log(res);
             })
             .catch((err) => {
                 console.error(err);
@@ -28,7 +27,7 @@ export class productDetail extends Component {
                     <h2>Price: {product.price}</h2>
                     <h2>Quantity: {product.quantity}</h2>
                     <p>Description: {product.description}</p>
-                    <button className="btn btn-danger">Add To Cart</button>
+                    <button className="btn btn-danger" onClick={() => this.props.handleAddToCart(product)}>Add To Cart</button>
                 </div>
             );
         });
